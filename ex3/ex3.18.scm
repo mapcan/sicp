@@ -1,0 +1,11 @@
+(define (contains-cycle? x)
+  (let ((visited '()))
+    (define (loop x)
+      (cond ((null? x) false)
+            ((memq x visited) true)
+            (else (set! visited (cons x visited))
+                  (loop (cdr x)))))
+    (loop x)))
+
+(define x (list '1 '2 '3 '2 '4))
+(contains-cycle? x)

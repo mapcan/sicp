@@ -1,0 +1,5 @@
+(rule (grandson ?x ?y)
+      (or (and (son ?x ?t)
+               (son ?t ?y))
+          (and (son ?x ?m)
+               (wife ?t ?m))))
