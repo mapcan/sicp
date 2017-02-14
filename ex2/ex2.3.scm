@@ -1,0 +1,15 @@
+(define (largest-power-of a z)
+  (if (= 0 (remainder z a))
+    (+ 1 (largest-power-of a (/ z a)))
+    0))
+
+(define (my-cons x y)
+  (* (expt 2 x) (expt 3 y)))
+(define (my-car x)
+  (largest-power-of 2 x))
+(define (my-cdr x)
+  (largest-power-of 3 x))
+
+(define shit (my-cons 2 3))
+(my-car shit)
+(my-cdr shit)

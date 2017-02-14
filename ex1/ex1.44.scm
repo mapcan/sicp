@@ -1,0 +1,25 @@
+(define (compose f g)
+  (lambda (x)
+    (f (g x))))
+(define (repeated f n)
+  (if (<= n 1)
+    f
+    (repeated (compose f f) (- n 1))))
+
+(define (square x)
+  (* x x))
+(define (smooth f)
+  (define dx 0.000001)
+  (define (avg3 x y z)
+    (/ (+ x y z) 3))
+  (lambda (x)
+    (avg3 (f (- x dx))
+          (f x)
+          (f (+ x dx)))))
+(define (nfold-smooth f n)
+  (repeated (smooth f) n))
+
+(define (square x)
+  (* x x))
+
+((nfold-smooth square 2) 9)

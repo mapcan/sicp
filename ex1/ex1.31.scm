@@ -1,0 +1,35 @@
+(define (product term a next b)
+  (define (iter a result)
+    (if (> a b)
+      result
+      (iter (next a) (* (term a) result))))
+  (iter a 1))
+
+(define (identity x)
+  x)
+(define (next x)
+  (+ x 1))
+
+(define (factorial n)
+  (define (term x)
+    (+ x 1))
+  (define (next x)
+    (+ x 1))
+  (product term 0 next (- n 1)))
+
+(define (quater-pi n)
+  (define (term x)
+    (if (even? x)
+      (/ (+ x 2) (+ x 3))
+      (/ (+ x 3) (+ x 2))))
+  (define (inc x)
+    (+ x 1))
+  (* 4 (product term 0 inc (- n 1))))
+
+;(define (pi-term n)
+;  (if (even? n)
+;    (/ (+ n 2) (+ n 1))
+;    (/ (+ n 1) (+ n 2))))
+
+(quater-pi 6)
+;(+ (product pi-term 1 next 6) 4)
